@@ -1,15 +1,17 @@
 import PropTypes from 'prop-types';
+import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
+import { Wrapper, StyledAverage, StyledInfo } from './UsersListItem.styles';
 
 const UsersListItem = ({ userData: { average, name, attendance = '0%' } }) => {
     return ( 
-        <li>
-            <div>{average}</div>
-                <div>
+        <Wrapper>
+            <StyledAverage>{average}</StyledAverage>
+                <StyledInfo>
                     <p>{name}</p>
                     <p>{attendance}</p>
-                </div>
-            <button>X</button>
-        </li>
+                </StyledInfo>
+            <DeleteButton />
+        </Wrapper>
      );
 }
 

@@ -1,11 +1,12 @@
-import { useState } from 'react';
-import UsersList from 'components/organisms/UsersList/UsersList';
+import React from 'react';
+import Dashboard from 'views/Dashboard';
 import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'assets/styles/GlobalStyle'
 import { theme } from 'assets/styles/theme';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Form from 'components/organisms/Form/Form';
-import { users as usersData } from 'data/users';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import AddUser from 'views/AddUser';
+import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
+import UsersProvider from 'providers/UsersProvider';
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.lightGray};
@@ -16,66 +17,29 @@ const Wrapper = styled.div`
   height: 100vh;
 `;
 
-
-const initialFormState = {
-  name: '',
-  attendance: '',
-  average: '',
-}
-
 function Root() {
-  const [users, setUsers] = useState(usersData);
-  const [formValues, setFormValues] = useState(initialFormState);
-
-  const deleteUser = (name) => {
-    const filteredUsers = users.filter((user) => user.name !== name);
-    setUsers(filteredUsers);
-  };
-
-  const handleInputChange = (e) => {
-    console.log(formValues);
-    setFormValues({
-      ...formValues,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleAddUser = (e) => {
-    e.preventDefault();
-    const newUser = {
-      name: formValues.name,
-      attendance: formValues.attendance,
-      average: formValues.average,
-    };
-
-    setUsers([newUser, ...users]);
-    setFormValues(initialFormState);
-
-    console.log(users);
-  };
-
+  
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Wrapper>
-          <nav>
-          <Link to="/">Home</Link>
-            <Link to="add">Add user</Link>
-          </nav>
-          <Switch>
-            <Route exact path="/">
-              <UsersList deleteUser={deleteUser} users={users} />
-            </Route>
-            <Route path="/add">
-              <Form handleInputChange={handleInputChange} handleAddUser={handleAddUser} formValues={formValues}/>
-            </Route>
-          </Switch>
-        </Wrapper>
+        <MainTemplate>
+          <UsersProvider>
+            <Wrapper>
+              <Switch>
+                <Route path="/add-user">
+                  <AddUser />
+                </Route>
+                <Route path="/">
+                  <Dashboard />
+                </Route>
+              </Switch>
+            </Wrapper>
+          </UsersProvider>
+        </MainTemplate>
       </ThemeProvider>
     </Router>
-
-  )
+  );
 }
 
 export default Root;

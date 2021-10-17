@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   padding: 50px;
+  overflow-y: scroll;
 `;
 
 export const NewsSectionHeader = styled.h3`
@@ -37,5 +38,15 @@ export const TitleWrapper = styled.div`
     p {
         margin: 0;
         font-size: ${({ theme }) => theme.fontSize.l}
+    }
+`;
+
+export const ContentWrapper = styled.div`
+    display: flex;
+
+    img {
+        margin-left: 35px;
+        max-width: 200px;
+        object-fit: cover;
     }
 `;

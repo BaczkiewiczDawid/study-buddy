@@ -39,8 +39,8 @@ export const NewsSection = () => {
     return (
         <Wrapper>
             <NewsSectionHeader>University feed section</NewsSectionHeader>
-            {articles.length > 0 && !error ? articles.map(({ title, category, content, image = null }) => (
-                <ArticleWrapper key={title}>
+            {articles.length > 0 && !error ? articles.map(({ id, title, category, content, image = null }) => (
+                <ArticleWrapper key={id}>
                     <TitleWrapper>
                         <h3>{title}</h3>
                         <p>{category}</p>

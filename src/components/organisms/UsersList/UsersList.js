@@ -1,7 +1,7 @@
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
 import { Wrapper, StyledList, StyledTitle } from './UsersList.styles';
 
-const UsersList = ({ users}) => {
+const UsersList = ({ users = [] }) => {
     return ( 
         <>
             <Wrapper>

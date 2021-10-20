@@ -4,7 +4,6 @@ import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'assets/styles/GlobalStyle'
 import { theme } from 'assets/styles/theme';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import AddUser from 'views/AddUser';
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 
 const Wrapper = styled.div`
@@ -27,9 +26,6 @@ function Root() {
             <Switch>
               <Route exact path="/">
                 <Redirect to="/group"></Redirect>
-              </Route>
-              <Route path="/add-user">
-                <AddUser />
               </Route>
               <Route path="/group/:id?">
                 <Dashboard />
